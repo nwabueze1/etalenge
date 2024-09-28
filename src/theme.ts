@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { theme as wazTheme } from "@wazobia-tech/wazcom/dist/theme";
 
 interface ExtendedThemeOptions {
   eleganteDesign: {
@@ -24,7 +23,6 @@ declare module "@mui/material/styles" {
 }
 
 export const theme: any = {
-  ...wazTheme,
   breakpoints: {
     values: {
       sm: 480,

@@ -6,12 +6,11 @@ import { useBlock6Styles } from "./useBlock6Styles";
 import clx from "classnames";
 import { InstagramCard } from "./TInstagramCard";
 import { useSelector } from "react-redux";
-import { createApolloClient, createImageSrcset } from "../../helper";
+import { createApolloClient } from "../../helper";
 import { useQuery } from "@apollo/client";
 import { GET_INSTAGRAM_IMAGES } from "./qgl";
 import { create2dMatrixFromStringArray } from "./helper";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
-import { Carousel } from "@wazobia-tech/wazcom/dist/core";
+import { decodeText } from "../../helper/decodeText";
 
 export const EleganteBlock6: FC<TBlockConfig> = ({
   activeElement,
@@ -66,16 +65,16 @@ export const EleganteBlock6: FC<TBlockConfig> = ({
       </div>
     ));
 
-  const renderModalImages = () =>
-    (content?.images).map((data: { image: { src: string } }, index: number) => (
-      <img
-        key={index}
-        src={data?.image?.src}
-        alt={"instagram image"}
-        className={clx(classes.modalImage)}
-        srcSet={createImageSrcset(data?.image)}
-      />
-    ));
+  // const renderModalImages = () =>
+  //   (content?.images).map((data: { image: { src: string } }, index: number) => (
+  //     <img
+  //       key={index}
+  //       src={data?.image?.src}
+  //       alt={"instagram image"}
+  //       className={clx(classes.modalImage)}
+  //       srcSet={createImageSrcset(data?.image)}
+  //     />
+  //   ));
 
   if (typeof window !== "undefined") {
     document.body.style.overflowY = openModal ? "hidden" : "auto";
@@ -120,7 +119,6 @@ export const EleganteBlock6: FC<TBlockConfig> = ({
       {openModal && mode === "view" && (
         <div className={classes.modal}>
           <div className={classes.modalContent}>
-            <Carousel ref={carouselRef}>{renderModalImages()}</Carousel>
             <ArrowButton orientation={"left"} className={classes.arrowLeft} onClick={() => handleClick("prev")} />
             <ArrowButton orientation={"right"} className={classes.arrowRight} onClick={() => handleClick("next")} />
           </div>

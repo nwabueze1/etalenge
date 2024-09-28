@@ -1,14 +1,14 @@
 import { CustomThemeProps, TBlockConfig } from "../../type";
-import { FC, useMemo, useRef } from "react";
+import { FC, useRef } from "react";
 import { useGetColor } from "../../hooks";
 import { useBlock3Styles } from "./useBlock3Styles";
 import { Container } from "../../components";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
-import { ClassNameMap, useMediaQuery, useTheme } from "@mui/material";
+import { ClassNameMap } from "@mui/material";
 import clx from "classnames";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 import { createResponsiveImage } from "../../helper/responsiveImage";
-import { Carousel } from "@wazobia-tech/wazcom/dist/core";
+// import { Carousel } from "@wazobia-tech/wazcom/dist/core";
 
 type TComment = {
   title: string;
@@ -32,7 +32,7 @@ export const EleganteBlock3: FC<TBlockConfig> = ({
   configuration,
   content,
   index,
-  screenSize,
+  // screenSize,
   handleSelect,
 }) => {
   const colorConfig = useGetColor(configuration as CustomThemeProps, "main");
@@ -40,11 +40,9 @@ export const EleganteBlock3: FC<TBlockConfig> = ({
   const classes = useBlock3Styles(colorConfig as CustomThemeProps);
   const key = `blocks.${index}`;
   // const [activeSlide, setActiveSlide] = useState<number>(0);
-  const comments = useMemo(() => content?.comments ?? [], [content?.comments]);
+  // const comments = useMemo(() => content?.comments ?? [], [content?.comments]);
   const carouselRef = useRef<{ next: () => void; prev: () => void }>(null);
-  const theme = useTheme();
-  const md = useMediaQuery(theme.breakpoints.up("md"));
-  const lg = useMediaQuery(theme.breakpoints.up("lg"));
+  // const theme = useTheme();
 
   const handleClick = (direction: "prev" | "next") => {
     if (direction === "prev") {
@@ -54,22 +52,22 @@ export const EleganteBlock3: FC<TBlockConfig> = ({
     }
   };
 
-  const slides = {
-    spacing: lg ? 24 : 16,
-    perView: lg ? 3.4 : md ? 1.7 : 1.2,
-  };
+  // const slides = {
+  //   spacing: lg ? 24 : 16,
+  //   perView: lg ? 3.4 : md ? 1.7 : 1.2,
+  // };
 
-  const renderComments = () =>
-    comments?.map((comment: TComment, index: number) => (
-      <div key={index}>
-        <Comment
-          screenSize={screenSize}
-          {...comment}
-          user={{ name: comment?.userName, image: comment?.image, description: comment?.userDescription }}
-          classes={classes}
-        />
-      </div>
-    ));
+  // const renderComments = () =>
+  //   comments?.map((comment: TComment, index: number) => (
+  //     <div key={index}>
+  //       <Comment
+  //         screenSize={screenSize}
+  //         {...comment}
+  //         user={{ name: comment?.userName, image: comment?.image, description: comment?.userDescription }}
+  //         classes={classes}
+  //       />
+  //     </div>
+  //   ));
 
   return (
     <section
@@ -90,16 +88,16 @@ export const EleganteBlock3: FC<TBlockConfig> = ({
           </div>
         </header>
         <div className="slider-container">
-          <Carousel spaceBetween={slides?.spacing} itemsToShow={slides?.perView} ref={carouselRef}>
+          {/* <Carousel spaceBetween={slides?.spacing} itemsToShow={slides?.perView} ref={carouselRef}>
             {renderComments()}
-          </Carousel>
+          </Carousel> */}
         </div>
       </Container>
     </section>
   );
 };
 
-const Comment: FC<TComment> = ({ classes, ...props }) => {
+export const Comment: FC<TComment> = ({ classes, ...props }) => {
   return (
     <div className={classes.testimonialContainer}>
       <h5 className={classes.testimonialTitle}>{decodeText(props?.title)}</h5>

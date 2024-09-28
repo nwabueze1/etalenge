@@ -7,3 +7,4 @@ export * from "./graphql";
 export * from "./image";
 export * from "./notify";
 export * from "./parsePostImage";
+export * from "./decodeText";

@@ -3,7 +3,7 @@ import { BlockProvider, Button, Container, Section } from "../../components";
 import { useGetColor } from "../../hooks";
 import { useBlock15Styles } from "./useBlock15Styles";
 import block15 from "../../mappings/block15";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 import { createResponsiveImage } from "../../helper/responsiveImage";
 var BLOCK_UUID = block15.uuid;
 export var EleganteBlock15 = function (_a) {

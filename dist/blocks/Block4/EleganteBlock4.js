@@ -15,7 +15,7 @@ import { useGetColor } from "../../hooks";
 import { BlockProvider, Button, Container, PostCard, Section } from "../../components";
 import { useBlock4Styles } from "./useBlock4Styles";
 import block4 from "../../mappings/block4";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 var BLOCK_UUID = block4.uuid;
 export var EleganteBlock4 = function (_a) {
     var _b, _c, _d, _e;

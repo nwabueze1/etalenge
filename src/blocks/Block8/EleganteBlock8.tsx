@@ -4,7 +4,7 @@ import { useGetColor } from "../../hooks";
 import { useBlock8Styles } from "./useBlock8Styles";
 import { Container } from "../../components";
 import clx from "classnames";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 import { createResponsiveImage } from "../../helper/responsiveImage";
 
 export const EleganteBlock8: FC<TBlockConfig> = ({

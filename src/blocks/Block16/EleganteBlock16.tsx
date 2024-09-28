@@ -3,7 +3,7 @@ import { CustomThemeProps, TBlockConfig } from "../../type";
 import { Container, Section } from "../../components";
 import { useGetColor } from "../../hooks";
 import { useBlock16Styles } from "./useBlock16Styles";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 import { createResponsiveImage } from "../../helper/responsiveImage";
 
 export const EleganteBlock16: FC<TBlockConfig> = ({

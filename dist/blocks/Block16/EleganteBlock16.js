@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Container, Section } from "../../components";
 import { useGetColor } from "../../hooks";
 import { useBlock16Styles } from "./useBlock16Styles";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 import { createResponsiveImage } from "../../helper/responsiveImage";
 export var EleganteBlock16 = function (_a) {
     var _b, _c, _d;

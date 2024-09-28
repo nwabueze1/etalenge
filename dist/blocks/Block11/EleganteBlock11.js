@@ -51,59 +51,39 @@ var __read = (this && this.__read) || function (o, n) {
     return ar;
 };
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { BlockProvider, Container, Section, BackButton } from "../../components";
 import { useGetColor } from "../../hooks";
-import block11 from "../../mappings/block11";
 import { CartItems, Delivery, EmptyCart, OrderSummary, Payment, OrderDetails } from "./views";
 import { CircularProgress } from "@mui/material";
 import { useBlock11Styles } from "./useBlock11Styles";
-import { useVerifyGlobalPayments } from "@wazobia-tech/wazcom/dist/core/PaymentUI/globalPayment";
-import Cookies from "universal-cookie";
-var BLOCK_UUID = block11.uuid;
+// import { useVerifyGlobalPayments } from "@wazobia-tech/wazcom/dist/core/PaymentUI/globalPayment";
+// import Cookies from "universal-cookie";
+// const { uuid: BLOCK_UUID } = block11;
 export var EleganteBlock11 = function (_a) {
-    var _b, _c, _d, _e, _f;
+    var _b, _c, _d;
     var content = _a.content, activeElement = _a.activeElement, configuration = _a.configuration, index = _a.index, handleSelect = _a.handleSelect;
     var restaurant = useSelector(function (store) { return store; }).restaurant;
     var mainConfig = useGetColor(configuration, "main");
     var backgroundConfig = useGetColor(configuration, "background");
     var btnConfig = useGetColor(configuration, "button");
-    var _g = __read(useState((content === null || content === void 0 ? void 0 : content.loading) !== undefined ? content === null || content === void 0 ? void 0 : content.loading : true), 2), loading = _g[0], setLoading = _g[1];
-    var _h = __read(useState(1), 2), activeStep = _h[0], setActiveStep = _h[1];
+    var _e = __read(useState((content === null || content === void 0 ? void 0 : content.loading) !== undefined ? content === null || content === void 0 ? void 0 : content.loading : true), 1), loading = _e[0];
+    var _f = __read(useState(1), 2), activeStep = _f[0], setActiveStep = _f[1];
     var classes = useBlock11Styles();
     var cart = restaurant === null || restaurant === void 0 ? void 0 : restaurant.cart;
-    var site_uuid = (_c = (_b = cart === null || cart === void 0 ? void 0 : cart.restaurant) === null || _b === void 0 ? void 0 : _b.site) === null || _c === void 0 ? void 0 : _c.uuid;
-    var isCartEmpty = !(cart === null || cart === void 0 ? void 0 : cart.cartItems) || ((_d = cart === null || cart === void 0 ? void 0 : cart.cartItems) === null || _d === void 0 ? void 0 : _d.length) === 0;
-    var cookies = new Cookies();
-    var cartCookie = useMemo(function () { return cookies.get("cart"); }, []);
-    var verifyGlobalPayments = useVerifyGlobalPayments();
+    // const site_uuid = cart?.restaurant?.site?.uuid as string;
+    var isCartEmpty = !(cart === null || cart === void 0 ? void 0 : cart.cartItems) || ((_b = cart === null || cart === void 0 ? void 0 : cart.cartItems) === null || _b === void 0 ? void 0 : _b.length) === 0;
+    // const cookies = new Cookies();
+    // const cartCookie = useMemo(() => cookies.get("cart"), []);
+    // const verifyGlobalPayments = useVerifyGlobalPayments();
     var key = "blocks." + String(index);
     useEffect(function () {
         handleOrderConfirmation();
     }, []);
     var handleOrderConfirmation = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var queryParams;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    queryParams = new URLSearchParams(window.location.search);
-                    if (!(queryParams.get("hivedeck_payment_type") && cartCookie[site_uuid])) return [3 /*break*/, 2];
-                    return [4 /*yield*/, verifyGlobalPayments(BLOCK_UUID, function () {
-                            setLoading(false);
-                            setActiveStep(4);
-                        }, function () {
-                            window.history.pushState({}, "", "/cart");
-                            setLoading(false);
-                        })];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    setLoading(false);
-                    _a.label = 3;
-                case 3: return [2 /*return*/];
-            }
+            return [2 /*return*/];
         });
     }); };
     var handleGoBack = function () {
@@ -132,6 +112,6 @@ export var EleganteBlock11 = function (_a) {
         }
     };
     if (loading)
-        return (_jsx("div", { className: classes.cartLoaderContainer, style: { color: (_e = mainConfig === null || mainConfig === void 0 ? void 0 : mainConfig.colors) === null || _e === void 0 ? void 0 : _e[100] }, children: _jsx(CircularProgress, { size: "20px", color: "inherit" }) }));
-    return (_jsx(BlockProvider, { mainConfig: mainConfig, buttonConfig: btnConfig, children: _jsx(Section, { isActive: activeElement === key, onClick: function () { return handleSelect === null || handleSelect === void 0 ? void 0 : handleSelect(key); }, background: (_f = backgroundConfig === null || backgroundConfig === void 0 ? void 0 : backgroundConfig.colors) === null || _f === void 0 ? void 0 : _f[100], children: _jsxs(Container, { children: [activeStep > 1 && _jsx(BackButton, { className: classes.cartBackButton, onClick: handleGoBack }), isCartEmpty ? (_jsx(EmptyCart, {})) : (_jsxs("div", { className: classes.root, children: [_jsx("div", { className: classes.cartItems, children: _jsx(CartItems, {}) }), _jsx("div", { className: classes.cartSidebar, children: renderCheckoutStep() })] }))] }) }) }));
+        return (_jsx("div", { className: classes.cartLoaderContainer, style: { color: (_c = mainConfig === null || mainConfig === void 0 ? void 0 : mainConfig.colors) === null || _c === void 0 ? void 0 : _c[100] }, children: _jsx(CircularProgress, { size: "20px", color: "inherit" }) }));
+    return (_jsx(BlockProvider, { mainConfig: mainConfig, buttonConfig: btnConfig, children: _jsx(Section, { isActive: activeElement === key, onClick: function () { return handleSelect === null || handleSelect === void 0 ? void 0 : handleSelect(key); }, background: (_d = backgroundConfig === null || backgroundConfig === void 0 ? void 0 : backgroundConfig.colors) === null || _d === void 0 ? void 0 : _d[100], children: _jsxs(Container, { children: [activeStep > 1 && _jsx(BackButton, { className: classes.cartBackButton, onClick: handleGoBack }), isCartEmpty ? (_jsx(EmptyCart, {})) : (_jsxs("div", { className: classes.root, children: [_jsx("div", { className: classes.cartItems, children: _jsx(CartItems, {}) }), _jsx("div", { className: classes.cartSidebar, children: renderCheckoutStep() })] }))] }) }) }));
 };

@@ -22,12 +22,11 @@ import { useBlock6Styles } from "./useBlock6Styles";
 import clx from "classnames";
 import { InstagramCard } from "./TInstagramCard";
 import { useSelector } from "react-redux";
-import { createApolloClient, createImageSrcset } from "../../helper";
+import { createApolloClient } from "../../helper";
 import { useQuery } from "@apollo/client";
 import { GET_INSTAGRAM_IMAGES } from "./qgl";
 import { create2dMatrixFromStringArray } from "./helper";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
-import { Carousel } from "@wazobia-tech/wazcom/dist/core";
+import { decodeText } from "../../helper/decodeText";
 export var EleganteBlock6 = function (_a) {
     var _b, _c;
     var activeElement = _a.activeElement, content = _a.content, configuration = _a.configuration, _d = _a.mode, mode = _d === void 0 ? "view" : _d, index = _a.index, handleSelect = _a.handleSelect, screenSize = _a.screenSize;
@@ -58,12 +57,16 @@ export var EleganteBlock6 = function (_a) {
     var renderImageCollections = function () {
         return create2dMatrixFromStringArray(content === null || content === void 0 ? void 0 : content.images, 0, []).map(function (item, index) { return (_jsx("div", { className: classes.imagesContainer, children: renderImages(item) }, index)); });
     };
-    var renderModalImages = function () {
-        return (content === null || content === void 0 ? void 0 : content.images).map(function (data, index) {
-            var _a;
-            return (_jsx("img", { src: (_a = data === null || data === void 0 ? void 0 : data.image) === null || _a === void 0 ? void 0 : _a.src, alt: "instagram image", className: clx(classes.modalImage), srcSet: createImageSrcset(data === null || data === void 0 ? void 0 : data.image) }, index));
-        });
-    };
+    // const renderModalImages = () =>
+    //   (content?.images).map((data: { image: { src: string } }, index: number) => (
+    //     <img
+    //       key={index}
+    //       src={data?.image?.src}
+    //       alt={"instagram image"}
+    //       className={clx(classes.modalImage)}
+    //       srcSet={createImageSrcset(data?.image)}
+    //     />
+    //   ));
     if (typeof window !== "undefined") {
         document.body.style.overflowY = openModal ? "hidden" : "auto";
     }
@@ -90,5 +93,5 @@ export var EleganteBlock6 = function (_a) {
             (_b = carouselRef.current) === null || _b === void 0 ? void 0 : _b.next();
         }
     };
-    return (_jsxs(BlockProvider, { buttonConfig: btnConfig, children: [_jsx("section", { className: clx(classes.root, activeElement === key && "active"), onClick: function () { return handleSelect === null || handleSelect === void 0 ? void 0 : handleSelect(key); }, style: { background: (_b = backgroundConfig === null || backgroundConfig === void 0 ? void 0 : backgroundConfig.colors) === null || _b === void 0 ? void 0 : _b[100] }, children: _jsxs(Container, { children: [_jsx("h4", { className: classes.heading, children: decodeText((_c = content === null || content === void 0 ? void 0 : content.text) === null || _c === void 0 ? void 0 : _c.heading) }), _jsx("div", { className: classes.collections, children: renderImageCollections() })] }) }), openModal && mode === "view" && (_jsxs("div", { className: classes.modal, children: [_jsxs("div", { className: classes.modalContent, children: [_jsx(Carousel, { ref: carouselRef, children: renderModalImages() }), _jsx(ArrowButton, { orientation: "left", className: classes.arrowLeft, onClick: function () { return handleClick("prev"); } }), _jsx(ArrowButton, { orientation: "right", className: classes.arrowRight, onClick: function () { return handleClick("next"); } })] }), _jsx("div", { className: classes.modalOverlay, onClick: handleCloseModal })] }))] }));
+    return (_jsxs(BlockProvider, { buttonConfig: btnConfig, children: [_jsx("section", { className: clx(classes.root, activeElement === key && "active"), onClick: function () { return handleSelect === null || handleSelect === void 0 ? void 0 : handleSelect(key); }, style: { background: (_b = backgroundConfig === null || backgroundConfig === void 0 ? void 0 : backgroundConfig.colors) === null || _b === void 0 ? void 0 : _b[100] }, children: _jsxs(Container, { children: [_jsx("h4", { className: classes.heading, children: decodeText((_c = content === null || content === void 0 ? void 0 : content.text) === null || _c === void 0 ? void 0 : _c.heading) }), _jsx("div", { className: classes.collections, children: renderImageCollections() })] }) }), openModal && mode === "view" && (_jsxs("div", { className: classes.modal, children: [_jsxs("div", { className: classes.modalContent, children: [_jsx(ArrowButton, { orientation: "left", className: classes.arrowLeft, onClick: function () { return handleClick("prev"); } }), _jsx(ArrowButton, { orientation: "right", className: classes.arrowRight, onClick: function () { return handleClick("next"); } })] }), _jsx("div", { className: classes.modalOverlay, onClick: handleCloseModal })] }))] }));
 };

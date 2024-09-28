@@ -6,7 +6,7 @@ import { useGetColor } from "../../hooks";
 import { BlockProvider, Button, Container } from "../../components";
 import { MdOutlineArrowForward, MdOutlineArrowBack } from "react-icons/md";
 import block5 from "../../mappings/block5";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 import { createResponsiveImage } from "../../helper/responsiveImage";
 
 const { uuid: BLOCK_UUID } = block5;

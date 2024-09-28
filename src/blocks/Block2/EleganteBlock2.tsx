@@ -1,18 +1,12 @@
-import { PlugInForm, PluginFormClassNamesPropsType, PluginFormRef, FormPallette } from "@wazobia-tech/wazcom/dist/io";
 import clx from "classnames";
-import { FC, ReactNode, useRef } from "react";
+import { FC, ReactNode } from "react";
 import { FaDiscord, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter, FiYoutube, FiGithub } from "react-icons/fi";
-import { useSelector } from "react-redux";
-import { Container, TEleganteStore } from "../../components";
-import { createApolloClient, notify, useRecordFormSubmission } from "../../helper";
+import { Container } from "../../components";
 import { useGetColor } from "../../hooks";
-import block2 from "../../mappings/block2";
 import { CustomThemeProps, TBlockConfig } from "../../type";
 import { Link, TFooterLink, TSocialMediaButton } from "./type";
 import { useBlock2Styles } from "./useBlock2Styles";
-
-const { uuid: BLOCK_UUID } = block2;
 
 export const EleganteBlock2: FC<TBlockConfig> = ({
   activeElement,
@@ -24,33 +18,8 @@ export const EleganteBlock2: FC<TBlockConfig> = ({
 }) => {
   const styleConfig = useGetColor(configuration as CustomThemeProps, "main");
   const classes = useBlock2Styles(styleConfig as CustomThemeProps);
-  const formRef = useRef<PluginFormRef>(null);
-  const { gatewayUrl } = useSelector<TEleganteStore, TEleganteStore>((store) => store);
-  const recordFormSubmission = useRecordFormSubmission();
+  // const formRef = useRef<PluginFormRef>(null);
   const key = `blocks.${index}`;
-  const pluginFormClasses: PluginFormClassNamesPropsType = {
-    textField: {
-      input: classes.textFieldInput,
-      inputContainer: classes.textFieldInput,
-      errorMessage: classes.textFieldInputErrorMessage,
-    },
-  };
-  const palette: FormPallette = {
-    colors: {
-      main: styleConfig?.colors?.[200],
-      hover: styleConfig?.colors?.[200],
-    },
-    typography: {
-      input: {
-        fontFamily: styleConfig?.fonts?.body,
-        color: styleConfig?.colors?.[200],
-      },
-      label: {
-        fontFamily: styleConfig?.fonts?.body,
-        color: styleConfig?.colors?.[200],
-      },
-    },
-  };
 
   type TLink = {
     text: string;
@@ -120,17 +89,7 @@ export const EleganteBlock2: FC<TBlockConfig> = ({
     return element;
   };
 
-  const handleNotify = (status: "success" | "error" | "warning" | "info", text: string) => {
-    notify(status, text);
-
-    if (status === "success") {
-      recordFormSubmission(content?.form_uuid, BLOCK_UUID);
-    }
-  };
-
-  const handleSubmit = () => {
-    formRef?.current?.submit?.();
-  };
+  const handleSubmit = () => {};
   const renderFooter = () =>
     content?.footerLinks?.map((item: TFooterLink, index: number) => (
       <div key={index}>
@@ -157,16 +116,16 @@ export const EleganteBlock2: FC<TBlockConfig> = ({
               <div className={classes.formContainer}>
                 {
                   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  <PlugInForm
-                    apolloClient={{ client: createApolloClient(gatewayUrl ?? "") }}
-                    ref={formRef}
-                    form={content?.form}
-                    form_uuid={content?.form_uuid}
-                    classNames={pluginFormClasses}
-                    style={{ flex: 1 }}
-                    onNotify={handleNotify}
-                    palette={palette}
-                  />
+                  // <PlugInForm
+                  //   apolloClient={{ client: createApolloClient(gatewayUrl ?? "") }}
+                  //   ref={formRef}
+                  //   form={content?.form}
+                  //   form_uuid={content?.form_uuid}
+                  //   classNames={pluginFormClasses}
+                  //   style={{ flex: 1 }}
+                  //   onNotify={handleNotify}
+                  //   palette={palette}
+                  // />
                 }
                 <button onClick={handleSubmit} className={classes.submitBtn}>
                   Submit

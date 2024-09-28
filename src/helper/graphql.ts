@@ -1,10 +1,7 @@
-import { ApolloClient, InMemoryCache, from } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { createUploadLink } from 'apollo-upload-client';
+import { ApolloClient, InMemoryCache, from } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 export const createApolloClient = (uri: string) => {
-  const httpLink: any = createUploadLink({ uri });
-
   const authLink = setContext((_, { headers }) => {
     return {
       headers: {
@@ -14,7 +11,7 @@ export const createApolloClient = (uri: string) => {
   });
 
   return new ApolloClient({
-    link: from([authLink, httpLink]),
+    link: from([authLink, ""]),
     cache: new InMemoryCache(),
     connectToDevTools: true,
   });

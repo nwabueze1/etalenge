@@ -5,7 +5,7 @@ import { BlockProvider, Button, Container, PostCard, Section } from "../../compo
 import { useBlock4Styles } from "./useBlock4Styles";
 import { CorePostFields } from "../../models";
 import block4 from "../../mappings/block4";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 
 const { uuid: BLOCK_UUID } = block4;
 

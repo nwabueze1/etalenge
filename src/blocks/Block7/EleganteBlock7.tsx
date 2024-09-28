@@ -7,7 +7,7 @@ import { useBlock7Styles } from "./useBlock7Styles";
 import { useMediaQuery, useTheme } from "@mui/material";
 import clx from "classnames";
 import block7 from "../../mappings/block7";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 
 const { uuid: BLOCK_UUID } = block7;
 

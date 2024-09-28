@@ -1,31 +1,31 @@
-import { FC, useState, useEffect, useMemo } from "react";
+import { FC, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { BlockProvider, Container, Section, BackButton, TEleganteStore } from "../../components";
 import { useGetColor } from "../../hooks";
-import block11 from "../../mappings/block11";
+// import block11 from "../../mappings/block11";
 import { CustomThemeProps, TBlockConfig } from "../../type";
 import { CartItems, Delivery, EmptyCart, OrderSummary, Payment, OrderDetails } from "./views";
 import { CircularProgress } from "@mui/material";
 import { useBlock11Styles } from "./useBlock11Styles";
-import { useVerifyGlobalPayments } from "@wazobia-tech/wazcom/dist/core/PaymentUI/globalPayment";
-import Cookies from "universal-cookie";
+// import { useVerifyGlobalPayments } from "@wazobia-tech/wazcom/dist/core/PaymentUI/globalPayment";
+// import Cookies from "universal-cookie";
 
-const { uuid: BLOCK_UUID } = block11;
+// const { uuid: BLOCK_UUID } = block11;
 
 export const EleganteBlock11: FC<TBlockConfig> = ({ content, activeElement, configuration, index, handleSelect }) => {
   const { restaurant } = useSelector<TEleganteStore, TEleganteStore>((store) => store);
   const mainConfig = useGetColor(configuration as CustomThemeProps, "main");
   const backgroundConfig = useGetColor(configuration as CustomThemeProps, "background");
   const btnConfig = useGetColor(configuration as CustomThemeProps, "button");
-  const [loading, setLoading] = useState(content?.loading !== undefined ? content?.loading : true);
+  const [loading] = useState(content?.loading !== undefined ? content?.loading : true);
   const [activeStep, setActiveStep] = useState(1);
   const classes = useBlock11Styles();
   const cart = restaurant?.cart;
-  const site_uuid = cart?.restaurant?.site?.uuid as string;
+  // const site_uuid = cart?.restaurant?.site?.uuid as string;
   const isCartEmpty = !cart?.cartItems || cart?.cartItems?.length === 0;
-  const cookies = new Cookies();
-  const cartCookie = useMemo(() => cookies.get("cart"), []);
-  const verifyGlobalPayments = useVerifyGlobalPayments();
+  // const cookies = new Cookies();
+  // const cartCookie = useMemo(() => cookies.get("cart"), []);
+  // const verifyGlobalPayments = useVerifyGlobalPayments();
 
   const key = "blocks." + String(index);
 
@@ -34,20 +34,20 @@ export const EleganteBlock11: FC<TBlockConfig> = ({ content, activeElement, conf
   }, []);
 
   const handleOrderConfirmation = async () => {
-    const queryParams = new URLSearchParams(window.location.search);
-    if (queryParams.get("hivedeck_payment_type") && cartCookie[site_uuid])
-      await verifyGlobalPayments(
-        BLOCK_UUID,
-        () => {
-          setLoading(false);
-          setActiveStep(4);
-        },
-        () => {
-          window.history.pushState({}, "", "/cart");
-          setLoading(false);
-        }
-      );
-    else setLoading(false);
+    // const queryParams = new URLSearchParams(window.location.search);
+    // if (queryParams.get("hivedeck_payment_type") && cartCookie[site_uuid])
+    // await verifyGlobalPayments(
+    //   BLOCK_UUID,
+    //   () => {
+    //     setLoading(false);
+    //     setActiveStep(4);
+    //   },
+    //   () => {
+    //     window.history.pushState({}, "", "/cart");
+    //     setLoading(false);
+    //   }
+    // );
+    // else setLoading(false);
   };
 
   const handleGoBack = () => {

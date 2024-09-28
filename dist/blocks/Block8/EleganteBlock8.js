@@ -3,7 +3,7 @@ import { useGetColor } from "../../hooks";
 import { useBlock8Styles } from "./useBlock8Styles";
 import { Container } from "../../components";
 import clx from "classnames";
-import { decodeText } from "@wazobia-tech/wazcom/dist/utilities";
+import { decodeText } from "../../helper/decodeText";
 import { createResponsiveImage } from "../../helper/responsiveImage";
 export var EleganteBlock8 = function (_a) {
     var _b, _c, _d, _e, _f, _g;
