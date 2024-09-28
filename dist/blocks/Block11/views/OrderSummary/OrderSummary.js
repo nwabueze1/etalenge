@@ -1,0 +1,21 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useSelector } from "react-redux";
+import { useBlockSelector } from "../../../../components";
+import { useOrderSummaryStyles } from "./useOrderSummaryStyles";
+import { getCurrency } from "../../../../helper";
+import { calculateCartSubTotal } from "../../../../utils/calculateCartItemsSumTotal";
+import clx from "classnames";
+export var OrderSummary = function (_a) {
+    var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+    var onProceedToCheckout = _a.onProceedToCheckout;
+    var restaurant = useSelector(function (store) { return store; }).restaurant;
+    var _o = useBlockSelector(function (state) { return state; }), mainConfig = _o.mainConfig, buttonConfig = _o.buttonConfig;
+    var classes = useOrderSummaryStyles(mainConfig);
+    var btnClasses = useOrderSummaryStyles(buttonConfig);
+    var cart = restaurant === null || restaurant === void 0 ? void 0 : restaurant.cart;
+    var currency = getCurrency((_d = (_c = (_b = cart === null || cart === void 0 ? void 0 : cart.restaurant) === null || _b === void 0 ? void 0 : _b.bank_info) === null || _c === void 0 ? void 0 : _c.currency) !== null && _d !== void 0 ? _d : "");
+    var subTotal = calculateCartSubTotal(cart);
+    var deliveryFee = !((_e = cart === null || cart === void 0 ? void 0 : cart.guest) === null || _e === void 0 ? void 0 : _e.firstname) ? Number((_g = (_f = cart === null || cart === void 0 ? void 0 : cart.restaurant) === null || _f === void 0 ? void 0 : _f.bank_info) === null || _g === void 0 ? void 0 : _g.delivery_fee) : ((_j = (_h = cart === null || cart === void 0 ? void 0 : cart.guest) === null || _h === void 0 ? void 0 : _h.address) === null || _j === void 0 ? void 0 : _j.uuid) ? Number((_l = (_k = cart === null || cart === void 0 ? void 0 : cart.restaurant) === null || _k === void 0 ? void 0 : _k.bank_info) === null || _l === void 0 ? void 0 : _l.delivery_fee) : 0;
+    var total = subTotal + deliveryFee;
+    return (_jsxs("div", { children: [_jsx("h5", { className: classes.title, children: "Order summary" }), _jsxs("div", { className: classes.summaryContainer, children: [_jsxs("div", { className: classes.summaryItem, children: [_jsx("p", { className: classes.summaryText, children: "Number of dishes" }), _jsx("p", { className: classes.summaryText, children: (_m = cart === null || cart === void 0 ? void 0 : cart.cartItems) === null || _m === void 0 ? void 0 : _m.length })] }), " ", _jsxs("div", { className: classes.summaryItem, children: [_jsx("p", { className: classes.summaryText, children: "Subtotal" }), _jsxs("p", { className: classes.summaryText, children: [currency, " ", new Intl.NumberFormat("en-US").format(subTotal)] })] }), _jsxs("div", { className: classes.summaryItem, children: [_jsx("p", { className: classes.summaryText, children: "Delivery Fee" }), _jsxs("p", { className: classes.summaryText, children: [currency, " ", new Intl.NumberFormat("en-US").format(deliveryFee)] })] }), _jsx("div", { className: classes.divider }), _jsxs("div", { className: classes.summaryItem, children: [_jsx("p", { className: classes.summaryText, children: "Total" }), _jsxs("p", { className: clx(classes.summaryText, classes.summaryTextBold), children: [currency, " ", new Intl.NumberFormat("en-US").format(total)] })] }), _jsx("button", { className: btnClasses.checkoutButton, onClick: onProceedToCheckout, children: "Proceed to Checkout" })] })] }));
+};

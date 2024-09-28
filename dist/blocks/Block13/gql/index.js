@@ -1,0 +1,10 @@
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+import { gql } from "@apollo/client";
+import { CORE_POST_FIELDS } from "../../../models";
+import { CORE_PAGINATOR_INFO_FIELDS } from "../../../models";
+export var GET_POSTS_BY_BLOG_UUID = gql(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  ", "\n  ", "\n  query GqlGetPostsByBlogUuid($blog_uuid: ID, $page: Int!, $search: String) {\n    getPostsByBlogUuid(input: { blog_uuid: $blog_uuid, page: $page, first: 12, search: $search }) {\n      data {\n        ...CorePostFields\n      }\n      paginatorInfo {\n        ...CorePaginatorInfo\n      }\n    }\n  }\n"], ["\n  ", "\n  ", "\n  query GqlGetPostsByBlogUuid($blog_uuid: ID, $page: Int!, $search: String) {\n    getPostsByBlogUuid(input: { blog_uuid: $blog_uuid, page: $page, first: 12, search: $search }) {\n      data {\n        ...CorePostFields\n      }\n      paginatorInfo {\n        ...CorePaginatorInfo\n      }\n    }\n  }\n"])), CORE_PAGINATOR_INFO_FIELDS, CORE_POST_FIELDS);
+export var GET_POSTS_BY_CATEGORY_UUID = gql(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  ", "\n  ", "\n  query GqlGetPostsByCategoryUuid($category_uuid: ID, $page: Int!) {\n    getPostsByCategoryUuid(input: { category_uuid: $category_uuid, page: $page, first: 12 }) {\n      data {\n        ...CorePostFields\n      }\n      paginatorInfo {\n        ...CorePaginatorInfo\n      }\n    }\n  }\n"], ["\n  ", "\n  ", "\n  query GqlGetPostsByCategoryUuid($category_uuid: ID, $page: Int!) {\n    getPostsByCategoryUuid(input: { category_uuid: $category_uuid, page: $page, first: 12 }) {\n      data {\n        ...CorePostFields\n      }\n      paginatorInfo {\n        ...CorePaginatorInfo\n      }\n    }\n  }\n"])), CORE_PAGINATOR_INFO_FIELDS, CORE_POST_FIELDS);
+var templateObject_1, templateObject_2;
