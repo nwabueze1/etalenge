@@ -11,7 +11,7 @@ export const createApolloClient = (uri: string) => {
   });
 
   return new ApolloClient({
-    link: from([authLink, ""]),
+    link: from([authLink]),
     cache: new InMemoryCache(),
     connectToDevTools: true,
   });
